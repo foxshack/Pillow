@@ -54,6 +54,10 @@ def test_float() -> None:
     assert math.isnan(float(IFDRational(0, 0)))
 
 
+def test_int() -> None:
+    assert int(IFDRational(5, 2)) == 2
+
+
 def test_ranges() -> None:
     for num in range(1, 10):
         for denom in range(1, 10):

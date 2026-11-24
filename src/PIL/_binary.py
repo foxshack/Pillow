@@ -26,7 +26,7 @@ def i8(c: bytes) -> int:
 
 
 def o8(i: int) -> bytes:
-    return (i & 255).to_bytes()
+    return bytes((i & 255,))
 
 
 # Input, le = little endian, be = big endian

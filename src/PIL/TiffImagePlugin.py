@@ -476,7 +476,8 @@ class IFDRational(Rational):
     __floor__ = _delegate("__floor__")
     __round__ = _delegate("__round__")
     __float__ = _delegate("__float__")
-    __int__ = _delegate("__int__")
+    if hasattr(Fraction, "__int__"):
+        __int__ = _delegate("__int__")
 
 
 _LoaderFunc = Callable[["ImageFileDirectory_v2", bytes, bool], Any]

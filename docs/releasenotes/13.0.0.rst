@@ -69,6 +69,9 @@ Python 3.10
 Pillow has dropped support for Python 3.10,
 which reached end-of-life in October 2026.
 
+This maintenance branch restores Python 3.10 compatibility for downstream users
+who need the security fixes in this release series.
+
 Saving I mode images as PNG
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
