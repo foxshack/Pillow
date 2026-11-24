@@ -68,7 +68,8 @@ class TestFileTiff:
             open_test_image()
 
     def test_closed_file(self) -> None:
-        with warnings.catch_warnings(action="error"):
+        with warnings.catch_warnings():
+            warnings.simplefilter("error")
             im = Image.open("Tests/images/multipage.tiff")
             im.load()
             im.close()
@@ -84,7 +85,8 @@ class TestFileTiff:
             im.seek(1)
 
     def test_context_manager(self) -> None:
-        with warnings.catch_warnings(action="error"):
+        with warnings.catch_warnings():
+            warnings.simplefilter("error")
             with Image.open("Tests/images/multipage.tiff") as im:
                 im.load()
 
@@ -782,7 +784,7 @@ class TestFileTiff:
             assert reread.n_frames == 3
 
         # Test appending using a generator
-        def im_generator(ims: list[Image.Image]) -> Generator[Image.Image]:
+        def im_generator(ims: list[Image.Image]) -> Generator[Image.Image, None, None]:
             yield from ims
 
         mp = BytesIO()

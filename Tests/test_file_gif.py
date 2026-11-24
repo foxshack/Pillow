@@ -45,7 +45,8 @@ def test_unclosed_file() -> None:
 
 
 def test_closed_file() -> None:
-    with warnings.catch_warnings(action="error"):
+    with warnings.catch_warnings():
+        warnings.simplefilter("error")
         im = Image.open(TEST_GIF)
         im.load()
         im.close()
@@ -66,7 +67,8 @@ def test_seek_after_close() -> None:
 
 
 def test_context_manager() -> None:
-    with warnings.catch_warnings(action="error"):
+    with warnings.catch_warnings():
+        warnings.simplefilter("error")
         with Image.open(TEST_GIF) as im:
             im.load()
 
@@ -1184,7 +1186,7 @@ def test_append_images(tmp_path: Path) -> None:
         assert reread.n_frames == 3
 
     # Tests appending using a generator
-    def im_generator(ims: list[Image.Image]) -> Generator[Image.Image]:
+    def im_generator(ims: list[Image.Image]) -> Generator[Image.Image, None, None]:
         yield from ims
 
     im.save(out, save_all=True, append_images=im_generator(ims))

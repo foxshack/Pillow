@@ -47,7 +47,8 @@ def test_unclosed_file() -> None:
 
 
 def test_closed_file() -> None:
-    with warnings.catch_warnings(action="error"):
+    with warnings.catch_warnings():
+        warnings.simplefilter("error")
         with pytest.warns(DeprecationWarning, match="IM image format"):
             im = Image.open(TEST_IM)
         im.load()
@@ -55,7 +56,8 @@ def test_closed_file() -> None:
 
 
 def test_context_manager() -> None:
-    with warnings.catch_warnings(action="error"):
+    with warnings.catch_warnings():
+        warnings.simplefilter("error")
         with pytest.warns(DeprecationWarning, match="IM image format"):
             with Image.open(TEST_IM) as im:
                 im.load()

@@ -21,7 +21,8 @@ def test_bad() -> None:
     either"""
     for f in get_files("b"):
         # Assert that there is no unclosed file warning
-        with warnings.catch_warnings(action="error"):
+        with warnings.catch_warnings():
+            warnings.simplefilter("error")
             try:
                 with Image.open(f) as im:
                     im.load()

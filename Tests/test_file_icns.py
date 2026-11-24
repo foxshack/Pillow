@@ -23,7 +23,8 @@ def test_sanity() -> None:
     # (512x512@2x) being loaded
     with Image.open(TEST_FILE) as im:
         # Assert that there is no unclosed file warning
-        with warnings.catch_warnings(action="error"):
+        with warnings.catch_warnings():
+            warnings.simplefilter("error")
             im.load()
 
         assert im.mode == "RGBA"
